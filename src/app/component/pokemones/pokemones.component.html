@@ -1,0 +1,24 @@
+<h1 class="text-center">Pokedex list</h1>
+<div class="container">
+    <div class="row row-fluid">
+        <div class="card bg-dark text-white m-3" style="width: 18rem;" *ngFor="let pokemon of pokemonList" >
+            <img [src]="pokemon.sprites.front_default" class="card-img-top" [alt]="pokemon.name">
+            <div class="card-body">
+            <h3 class="card-title">{{pokemon.name | titlecase}}  Nº-{{ pokemon.id}}</h3>
+            <h6 class="card-text"> Type</h6>
+            <ol>
+                <li class="card-text" *ngFor="let tipo of pokemon.types">
+                    {{ tipo.type.name | titlecase }}
+                </li>
+            </ol>
+            <a class="btn btn-primary" (click)="verPokemon(pokemon.name)" >More..</a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center vh-100" *ngIf="loading">
+        <div class="spinner-grow text-primary" style="width: 5rem; height: 5rem;" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+</div>
+

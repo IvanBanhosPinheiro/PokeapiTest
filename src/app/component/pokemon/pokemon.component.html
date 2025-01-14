@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row row-fluid" *ngIf="pokemon">
+        <h1 class="text-center">Nº-{{ pokemon.id}} | {{ pokemon.name | titlecase}}</h1>
+        <div class="col-md-3 m-5" style="width: 10rem;" *ngFor="let img of images">
+            <img  [src]="img" class="card-img-top" [alt]="pokemon.name">
+        </div>
+        <div class="col-md-6">
+            <h4> Abilities:</h4>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item bg-dark text-white"  *ngFor="let habilidad of habilidades; let i = index;">
+                  <h2 class="accordion-header" [id]="'flush-headingOne' + i ">
+                    <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapseOne' + i" aria-expanded="false" [attr.aria-controls]="'flush-collapseOne' + i">
+                        {{ habilidad.name | titlecase}}
+                    </button>
+                  </h2>
+                  <div [id]="'flush-collapseOne' + i" class="accordion-collapse collapse " [attr.aria-labelledby]="'flush-headingOne' + i" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body" > 
+                         {{ descripcion[i] }} 
+                        <br>
+                         {{ habilidad.effect_entries[i].effect }}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Height:</h4>
+            <p> {{ pokemon.height/10 }} m</p>
+            <h4>Weight</h4>
+            <p> {{ pokemon.weight/10 }} Kg</p>
+            <h4>Type</h4>
+            <ul>
+                <li *ngFor="let tipo of pokemon.types"> {{ tipo.type.name }}</li>
+            </ul>
+        </div>
+
+        <div class="text-center m-4">
+            <a class="btn btn-primary" (click)="regresar()" >Return home</a>
+        </div>
+        
+    </div>
+</div>
+
+
+  
+
+  
